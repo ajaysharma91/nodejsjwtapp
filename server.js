@@ -1,0 +1,11 @@
+require("dotenv").config();
+let server = require("express");
+const testroute = require('./route/test.route');
+const app = server();
+const bodyParser = require('body-parser');
+const port  = 5000;
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use("/api/test",testroute);
+app.use("/",(req,res)=>{res.send("Hello World")});
+app.listen(process.env.APP_PORT, ()=>console.log("Server startted on port ", process.env.APP_PORT));
